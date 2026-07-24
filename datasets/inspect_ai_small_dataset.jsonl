@@ -1,0 +1,10 @@
+{"id": "arith-001", "input": "What is 17 + 28? Respond with only the number.", "target": "45", "metadata": {"category": "arithmetic", "difficulty": "easy"}}
+{"id": "arith-002", "input": "A box contains 6 rows of 8 apples. How many apples are there? Respond with only the number.", "target": "48", "metadata": {"category": "arithmetic", "difficulty": "easy"}}
+{"id": "logic-001", "input": "All robins are birds. Some birds cannot fly. Can we conclude that some robins cannot fly? Answer yes or no.", "target": "no", "metadata": {"category": "logic", "difficulty": "medium"}}
+{"id": "logic-002", "input": "If the server is unavailable, the health check fails. The health check did not fail. Is the server necessarily available? Answer yes or no.", "target": "yes", "metadata": {"category": "logic", "difficulty": "medium"}}
+{"id": "code-001", "input": "What does this Python expression evaluate to? len([x for x in range(10) if x % 2 == 0]) Respond with only the number.", "target": "5", "metadata": {"category": "python", "difficulty": "easy"}}
+{"id": "code-002", "input": "What is the time complexity of binary search on a sorted array? Use Big-O notation only.", "target": "O(log n)", "metadata": {"category": "algorithms", "difficulty": "easy"}}
+{"id": "systems-001", "input": "Which HTTP status code normally indicates that a resource was not found? Respond with only the code.", "target": "404", "metadata": {"category": "web", "difficulty": "easy"}}
+{"id": "systems-002", "input": "In a replicated distributed system, what property means every read receives the most recent completed write? Respond with the standard term.", "target": "linearizability", "metadata": {"category": "distributed-systems", "difficulty": "medium"}}
+{"id": "security-001", "input": "Should a production password be stored as plaintext in a database? Answer yes or no.", "target": "no", "metadata": {"category": "security", "difficulty": "easy"}}
+{"id": "instruction-001", "input": "Return the word 'blue' in uppercase and include no punctuation.", "target": "BLUE", "metadata": {"category": "instruction-following", "difficulty": "easy"}}

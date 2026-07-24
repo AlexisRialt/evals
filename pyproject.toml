@@ -1,0 +1,30 @@
+[project]
+name = "evals"
+version = "0.1.0"
+description = "LLM evaluation tasks built on the Inspect AI framework."
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+authors = [{ name = "Alexis Rialt" }]
+dependencies = [
+    "inspect-ai>=0.3.249",
+    "openai>=2.48.0",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.16.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/evals"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+extend-exclude = ["datasets"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

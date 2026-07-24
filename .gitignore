@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+
+# Inspect AI eval logs (keep the directory, ignore the outputs)
+logs/*.eval
+logs/*.json
