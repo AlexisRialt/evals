@@ -1,0 +1,15 @@
+# Docker Compose sandbox for Inspect tasks (see src/evals/tasks/sandbox.py).
+#
+# Reuses the repo's Dockerfile as the sample environment. The image sets
+# ENTRYPOINT ["inspect"], which is right for running evals but wrong for a
+# sandbox container, so we override the entrypoint with a keep-alive command
+# and let Inspect exec tool calls (bash/python) into the running container.
+services:
+  default:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    entrypoint: ["tail", "-f", "/dev/null"]
+    network_mode: none
+    stop_grace_period: 1s

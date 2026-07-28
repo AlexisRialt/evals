@@ -2,8 +2,9 @@
 
 from pathlib import Path
 
-# Repository-root ``datasets/`` directory, resolved relative to this file so
-# tasks load their JSONL regardless of the current working directory.
-DATASETS_DIR = Path(__file__).resolve().parents[2] / "datasets"
+# Repository root, resolved relative to this file so tasks locate their
+# datasets and sandbox config regardless of the current working directory.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATASETS_DIR = PROJECT_ROOT / "datasets"
 
-__all__ = ["DATASETS_DIR"]
+__all__ = ["DATASETS_DIR", "PROJECT_ROOT"]

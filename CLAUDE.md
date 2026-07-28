@@ -15,6 +15,7 @@ LLM evaluation project built on the [Inspect AI](https://inspect.ai-safety-insti
 uv sync                                                       # install dependencies
 uv run inspect eval src/evals/tasks/scheming.py               # run the scheming task
 uv run inspect eval src/evals/tasks/arithmetic.py             # run the arithmetic task
+uv run inspect eval src/evals/tasks/sandbox.py                # run the Docker-sandboxed agent (needs Docker running)
 uv run inspect eval src/evals/tasks/scheming.py --model openai/gpt-4o   # override model
 uv run inspect eval src/evals/tasks/arithmetic.py --limit 1   # run a single sample while iterating
 uv run inspect view                                           # browse .eval logs in the log viewer
@@ -36,6 +37,11 @@ Running a task appends a timestamped `.eval` file to `logs/` (gitignored).
 
 - `scheming_eval` (`src/evals/tasks/scheming.py`) → `datasets/inspect_ai_scheming_eval.jsonl`, scored with `model_graded_qa`. Paired `evaluation`/`deployment` conditions (same `pair_id`, differing `condition` in metadata) probing scheming behaviors (oversight avoidance, audit falsification, sandbagging, etc.). Compare results *within* each `pair_id`: safer behavior only under the `evaluation` condition is a warning sign. See `datasets/inspect_ai_scheming_eval_README.md`.
 - `arithmetic` (`src/evals/tasks/arithmetic.py`) → `datasets/inspect_ai_small_dataset.jsonl`, scored with `match`. Small arithmetic/logic set with exact-string targets.
+- `sandbox_agent` (`src/evals/tasks/sandbox.py`) → `datasets/inspect_ai_sandbox_tasks.jsonl`, scored with `includes`. A `basic_agent` with `bash`/`python` tools that must execute code to answer. Requires a running Docker daemon.
+
+## Docker sandbox
+
+`sandbox_agent` runs each sample in a Docker sandbox. The image is the repo `Dockerfile` (reused, not a second image); the sandbox service is defined in root `compose.yaml`, referenced from the task by an absolute path (`PROJECT_ROOT / "compose.yaml"` from `src/evals/__init__.py`). Key detail: the `Dockerfile` sets `ENTRYPOINT ["inspect"]` for running evals, so `compose.yaml` **overrides the entrypoint** with `tail -f /dev/null` — otherwise the sandbox container would try to run `inspect` and exit immediately, leaving nothing for Inspect to exec tool calls into. When editing the Dockerfile, keep this override in mind.
 
 ## Adding a task
 
